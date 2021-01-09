@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {%load static%}
+    <link rel="stylesheet" href="{%static 'css/style.css'%}">
+</head>
+<body>
+    <div class="beegcontainer">
+        <div class="header-container">
+            <h1>Welcome {{user_object.first_name}} {{user_object.last_name}}</h1>
+            <a href="/logout">Log out</a>
+        </div>
+
+        <div class="bottom-container">
+            <div class="left-addbook">
+                
+                <form action="/addbook" method="POST">
+                    {%csrf_token%}
+                    <div><h2>ADD A BOOK</h2></div>
+                    <div>
+                        <label for="title">Title: </label><input type="text" name="title" size="28">
+                    </div>
+                    <div>
+                        <label for="desc">Description: </label><textarea name="desc" id="" cols="30" rows="10"></textarea>
+                    </div>
+                    
+                    <div class="button-div">
+                        <button type="submit">Add</button>
+                    </div>
+                </form>
+
+                <div class="error-spot">
+                    {% if messages %}
+                        <ul class="messages">    
+                            {% for message in messages %}    
+                            <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>    
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="right-allbooks">
+                
+                <div class="inner-right-allbooks">
+                    <h2>ALL BOOKS</h2>
+                    {%for single_book in all_books%}
+                    <div class="book-content">
+                        <a href="/books/{{single_book.id}}"><h3>{{single_book.title}}</h3></a>
+                        <h5>(Added by {{single_book.uploaded_by.first_name}})</h5>
+
+                        {% if user_object in single_book.users_who_liked.all %}
+                            <p><em>This is one of your favorites</em></p>
+                        {% else %}
+                            <a href="/addfavorite/{{single_book.id}}">Add to Favorites</a>
+                        {% endif %}
+                    </div>
+                    {% endfor %}
+
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

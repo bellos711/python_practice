@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {% load static %}
+    <link rel="stylesheet" href="{%static 'css/style.css'%}">
+</head>
+<body>
+    <div class="beegcontainer">
+        <div class="smolcontainer">
+            <h1>This be the great number game...</h1>
+            <h4>I am thinking of a number between 0 and 100. What is it?</h4>
+            <form action="/guess-process" method="POST">
+                {% csrf_token %}
+                <input type="text" name="guess" id="guess">
+                <button type="guess">Submit</button>
+            </form>
+            <h1>{{request.session.hint}}</h1>
+        </div>
+    </div>
+</body>
+</html>

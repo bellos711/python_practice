@@ -1,0 +1,145 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+body{
+    background-image: linear-gradient(to left, #FD297B , #FF655B);
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: white;
+}
+
+
+.index-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.registration{
+    width: 40%;
+    margin: auto;
+    padding: 10px;
+    
+    text-align: center;
+}
+
+.button-div{
+    width: 100%;
+}
+
+.login{
+    width: 40%;
+    margin: auto;
+    padding: 10px;
+    
+    text-align: center;
+}
+
+label{
+    width: 110px;
+    display: inline-block;
+}
+
+button{
+    margin-top: 10px;
+    border: 2px solid gray;
+    background-color: white;
+    padding: 5px;
+    color: #4BC78F;
+    text-decoration: none;
+    margin-left: 5px;
+}
+
+
+
+.error-spot{
+    width: 100%;
+    text-align: center;
+}
+
+
+/*Dashboard or books page*/
+.header-container{
+    width: 98%;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-container a{
+    color: white;
+    font-size: 1.3rem;
+    text-decoration: none;
+}
+
+.bottom-container{
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.left-addbook{
+    padding: 15px;
+    width: 40%;
+}
+
+.left-addbook div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 5px;
+}
+
+
+.right-allbooks{
+    padding: 15px;
+    width: 40%;
+}
+
+.inner-right-allbooks{
+    height: 300px;
+    overflow: auto;
+}
+
+.inner-right-allbooks a{
+    color: white;
+    text-decoration: none;
+}
+
+.book-content{
+    padding: 3px;
+    margin-bottom: 5px;
+}
+
+h5{
+    font-weight: lighter;
+}
+
+.description{
+    font-size: 1.1rem;
+}
+
+
+section{
+    width: 100%;
+    text-align: center;
+}
+
+.right-div-sections{
+    padding: 3px;
+    width: 97%;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.button-div a{
+    margin-top: 10px;
+    border: 1px solid black;
+    background-color: firebrick;
+    padding: 2px;
+    color: white;
+    text-decoration: none;
+    margin-left: 5px;
+}

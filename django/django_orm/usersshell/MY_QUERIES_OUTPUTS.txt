@@ -1,0 +1,87 @@
+#ADD 3 USERS
+>>> from usersapp.models import *
+>>> Users
+<class 'usersapp.models.Users'>
+>>> poweruser = Users.objects.create(
+...     first_name='Kahlil',    
+...     last_name='Bello',
+...     email_address = 'kahlilmail@sample.com',
+...     age = 25,)
+>>> poweruser
+<Users: Users object (1)>
+>>> Users.first_name
+<django.db.models.query_utils.DeferredAttribute object at 0x039FA328>
+>>> poweruser.first_name
+'Kahlil'
+>>> superuser = Users.objects.create(
+...     first_name = 'Alice',
+...     last_name='SuperAlice',
+...         email_address = 'alice@sample.com',
+...         age = 23,)
+>>> superuser.first_name
+'Alice'
+>>> regularuser = Users.objects.create(
+...     first_name = 'John',
+...     last_name='Johnson',
+...         email_address = 'john@sample.com',
+...         age = 33,)
+>>> regularuser.first_name
+'John'
+
+
+
+#RETRIEVE ALL USERS
+all_users = Users.objects.all()
+>>> all_users
+<QuerySet [<Users: Users object (1)>, <Users: Users object (2)>, <Users: Users object (3)>]>
+
+
+
+#RETRIEVE LAST USER
+>>> Users.objects.last()
+<Users: Users object (3)>
+>>> 
+>>> Users.objects.last().first_name
+'John'
+
+#RETRIEVE FIRST
+>>> Users.objects.first()
+<Users: Users object (1)>
+>>> Users.objects.first().first_name
+'Kahlil'
+>>>
+
+
+#Change last name of user 3
+>>> u=Users.objects.get(id=3) 
+>>> u.last_name
+'Johnson'
+>>> u.last_name = "Pancakes" 
+>>> u.last_name
+'Pancakes'
+>>>
+
+#delete user 2
+>>> u2 = Users.objects.get(id=2) 
+>>> u2.first_name
+'Alice'
+>>> u2.delete()
+(1, {'usersapp.Users': 1})
+>>> Users.objects.all()
+<QuerySet [<Users: Users object (1)>, <Users: Users object (3)>]>
+>>>
+
+
+#sort by ascending
+#user3 first_name is john, user1 first_name is kahlil
+>>> all_users
+<QuerySet [<Users: Users object (1)>, <Users: Users object (3)>]>
+>>> all_users.order_by('first_name') 
+<QuerySet [<Users: Users object (3)>, <Users: Users object (1)>]>
+>>>
+
+
+#sort by descending once sorted
+>>> all_users.order_by('-first_name') 
+<QuerySet [<Users: Users object (1)>, <Users: Users object (3)>]>
+>>>

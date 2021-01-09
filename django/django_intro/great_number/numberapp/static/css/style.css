@@ -1,0 +1,14 @@
+body{
+    background-color: darkslategrey;
+    color: white;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    text-align: center;
+}
+
+.beegcontainer{
+    padding: 30px;
+}
+
+.smolcontainer{
+    margin: auto;
+}

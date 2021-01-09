@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {%load static%}
+    <link rel="stylesheet" href="{%static 'css/style.css'%}">
+</head>
+<body>
+    
+    <div class="beegcontainer">
+        <h1>Add a New book Title and a Review!</h1>
+        <a href="/books">Home</a> | 
+        <a href="/logout">Log Out</a>
+        <div class="index-container">
+            
+            <div class="add_book_box">
+                <form action="/addbook" method="POST">
+                    {%csrf_token%}
+                    
+                    <div>
+                        <label for="title">Book Title: </label><input type="text" name="title">
+                    </div>
+
+                    <div>
+                        <label for="author_id">Author</label>          
+                        <select name="author_id">
+                            {%for author in all_authors%}
+                            <option value="{{author.id}}">{{author.author_name}}</option>
+                            {%endfor%}
+                        </select>
+                    </div>
+
+
+                    <div>
+                        <label for="review">Review:</label><textarea name="review" placeholder="Type here..." cols="30" rows="10"></textarea>
+                    </div>
+
+                    <div>
+                        <label for="rating">Rating: </label>
+                        <select name="rating" >
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                    </div>
+                    
+                    <div class="button-div">
+                        <button type="submit">Add Book and Review</button>
+                    </div>
+                </form>
+            </div>
+            
+            <div>
+                <form action="/add_author" method="POST">
+                    {%csrf_token%}
+                    <label for="add_author">OR Add Author to Dropdown: </label><input type="text" name="author_name">
+                    <button type="submit">Add Author</button>
+                </form>
+            </div>
+
+        </div>
+
+    </div>
+    <div class="error-spot">
+        {% if messages %}
+            <ul class="messages">    
+                {% for message in messages %}    
+                <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>    
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </div>
+</body>
+</html>

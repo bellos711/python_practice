@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {%load static%}
+    <link rel="stylesheet" href="{%static 'css/style.css'%}">
+</head>
+<body>
+    
+    <div class="beegcontainer">
+        <div class="header_container">
+            <h1>Hello {{this_user.first_name}}! Make a wish!</h1>
+            <a href="/logout">Log Out</a>
+        </div>
+        <div class="error-spot">
+            {% if messages %}
+                <ul class="messages">    
+                    {% for message in messages %}    
+                    <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>    
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
+        <div class="index-container">
+            
+            <div class="add_wish_box">
+                <form action="/addwish" method="POST">
+                    {%csrf_token%}                   
+                    <div class="form_div">
+                        <label for="title">I wish for: </label><input type="text" name="title" size="28">
+                    </div>
+
+                    <div class="form_div">
+                        <label for="desc">Description:</label><textarea name="desc" placeholder="Type here..." cols="30" rows="10"></textarea>
+                    </div>                          
+                    <div class="button-div">
+                        <a class="button_a" href="/wishes">Cancel</a>
+                        <button type="submit">Submit</button>
+                    </div>
+                </form>
+            </div>
+            
+
+        </div>
+
+    </div>
+    
+</body>
+</html>

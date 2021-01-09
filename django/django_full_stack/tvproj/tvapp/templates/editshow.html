@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {%load static%}
+    <link rel="stylesheet" href="{%static 'css/style.css'%}">
+</head>
+<body>
+    <h1>IT WORKED, TVAPPS EDIT SHOW!</h1>
+    <div class="beegcontainer">
+        <a href="/shows">Go back</a>
+        <h2>Edit Show {{this_show.id}}</h2>
+        <div class="form-container">
+            <form action="/shows/{{this_show.id}}/edit_show" method="post">
+                {%csrf_token%}
+            <label for="name">Title</label>
+            <input type="text" name="title" value="{{this_show.title}}">
+            <br>
+            <label for="network">Network</label>
+            <input type="text" name='network' value="{{this_show.network}}">
+            <br>
+            <label for="release_date">Release Date</label>
+            <input type="date" name='release_date' value="{{this_show.release_date}}">
+            <br>
+            <label for="desc">Description</label>
+            <textarea name="desc" id="" cols="30" rows="10" placeholder="{{this_show.desc}}"></textarea>
+            <br>
+            <button type="submit">Update</button>
+            </form>
+            {% if messages %}
+            <ul class="messages">    
+                {% for message in messages %}    
+                <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>    
+                {% endfor %}
+            </ul>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>

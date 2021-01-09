@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {%load static%}
+    <link rel="stylesheet" href="{%static 'css/style.css'%}">
+</head>
+<body>
+    <div class="beegcontainer">
+        <div class="header-container">
+            <h1>Welcome to the dashboard {{user_object.first_name}} {{user_object.last_name}}</h1>
+            <a href="/add">Add a Book</a> | 
+            <a href="/logout">Log out</a>
+        </div>
+        
+        <div class="maincontainer">
+            <div class="left_content">
+                <h2>Recent Book Reviews:</h2>
+                <div class="recent_book_reviews">
+                    <h3>this is empty for now</h3>
+                    {%for single_book in all_books%}
+                    <div class="recent_review_item">
+                        <h3>{{single_book.title}}</h3>
+                        <p>Rating: {{single_book.rating}}</p>
+                        <p>TODO</p>
+                    </div>
+                    {%endfor%}
+
+                </div>
+            </div>
+
+            <div class="right_content">
+                <h2>Other Books with Reviews:</h2>
+                <div class="books_with_reviews">
+                    <p>Books are empty for now</p>
+                    {%for single_book in all_books%}
+                    <p>There are no books yet</p>
+                    <p>{{single_book.title}}</p>
+                    {%endfor%}
+                </div>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,61 @@
+*{
+    margin: 0px auto;
+    padding: 0px;
+}
+
+body{
+    background-color: #924EAF;
+    font-family: "Comic Sans Ms";
+    color: gainsboro;
+}
+
+.beegcontainer{
+    padding: 30px;
+    text-align: center;
+}
+
+.bot-container{
+    display: flex;
+    width: 80%;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.bot-container p{
+    margin-right: 15px;
+    padding: 10px;
+    flex-basis: 33%;
+}
+
+.top-container{
+    background-color: rebeccapurple;
+    text-align: center;
+    margin: auto;
+    border: 5px solid #332341;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+table{
+    border: 3px solid  #332341;
+    width: 80%;
+}
+
+th{
+    background-color: #332341;
+}
+
+
+tr:nth-child(even) {
+    background-color: #332341;
+}
+
+#noflex{
+    margin-top: 20px;
+    flex-basis: 50%;
+}
+
+p input{
+    margin-left: 20px;
+}

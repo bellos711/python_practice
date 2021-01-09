@@ -1,0 +1,46 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+body{
+    background-color: azure;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.beegcontainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.registration{
+    width: 40%;
+    margin: auto;
+    padding: 10px;
+    
+    text-align: center;
+}
+
+.login{
+    width: 40%;
+    margin: auto;
+    padding: 10px;
+    
+    text-align: center;
+}
+
+label{
+    width: 110px;
+    display: inline-block;
+}
+
+button{
+    margin-top: 10px;
+    margin-left: 150px;
+}
+
+.error-spot{
+    width: 100%;
+    text-align: center;
+}

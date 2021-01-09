@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {% load static %}
+    <link rel="stylesheet" href="{%static 'css/style.css'%}">
+</head>
+<body>
+    <h1>IT WORKED NINJA!</h1>
+    <div class="beegcontainer">
+        <div class="topcontainer">
+            <div class="adddojo">
+                <h2>ADD A DOJO</h2>
+                <form action="/adddojo" method="POST">
+                    {% csrf_token %}
+                    <label for="name">Name</label><input type="text" name="name"><br>
+                    <label for="city">City</label><input type="text" name="city"><br>
+                    <label for="state">State</label><input type="text" name="state" maxlength="2">
+                    <button type="submit">ADD</button>
+                </form>
+            </div>
+            <div class="addninja">
+                <h2>ADD A NINJA</h2>
+                <form action="/addninja" method="POST">
+                    {% csrf_token %}
+                    <label for="first_name">First Name</label><input type="text" name="first_name"><br>
+                    <label for="last_name">Last Name</label><input type="text" name="last_name"><br>
+                    <label for="dojo">Dojo</label>
+                    <select name="dojo_id" >
+                        {% for dojo in dojos %}
+                            <option value="{{dojo.id}}">{{dojo.name}}</option>
+                        {% endfor %}
+                    </select>
+                    <button type="submit">ADD</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="bottomcontainer">
+            <h1>ALL THE DOJOS</h1>
+
+            <div class="overflowcontainer">
+                <ul>
+                    {% for dojo in dojos %}
+                      <li>{{dojo.name}}
+                        <ul>
+                          <!-- looping through each author's books! -->
+                          {% for ninja in dojo.ninja.all %}	
+                            <li><em>{{ninja.first_name}} {{ninja.last_name}}</em></li>
+                          {% endfor %}
+                        </ul>
+                      </li>
+                    {% endfor %}
+                  </ul>
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {%load static%}
+    <link rel="stylesheet" href="{%static 'css/style.css'%}">
+</head>
+<body>
+    <h1>IT WORKED, TVAPPS!</h1>
+    <div class="beegcontainer">
+        <div class="beeg-table">
+            <table>
+                <thead>
+                    <tr>
+                        <td>ID</td>
+                        <td>Title</td>
+                        <td>Network</td>
+                        <td>Release Date</td>
+                        <td>Actions</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    {%for single_show in all_shows%}
+                    <tr>
+                        <td>{{single_show.id}}</td>
+                        <td>{{single_show.title}}</td>
+                        <td>{{single_show.network}}</td>
+                        <td>{{single_show.release_date}}</td>
+                        <td>
+                            <a href="/shows/{{single_show.id}}">Show</a>|
+                            <a href="/shows/{{single_show.id}}/edit">Edit</a>|
+                            <a href="/shows/{{single_show.id}}/delete">Delete</a>
+                        </td>
+                    </tr>
+                    {%endfor%}
+                </tbody>
+            </table>
+        </div>
+        <a href="/shows/new">Add a new show</a>
+    </div>
+</body>
+</html>

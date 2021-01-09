@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {%load static%}
+    <link rel="stylesheet" href="{%static 'css/style.css'%}">
+</head>
+<body>
+    <div class="beegcontainer">
+        <div class="header_container">
+            <h1>Welcome to the dashboard {{user_object.first_name}} {{user_object.last_name}}</h1>
+            <section class="header_right_links">
+                <a href="/logout">Log out</a>
+                <a href="/wishes/stats" class="header_a_box">View Stats</a> 
+                <a href="/wishes/new" class="header_a_box">Make a wish!</a>
+            </section>
+        </div>
+        
+        <div class="maincontainer">
+            <div class="top_container">
+                <h2>Your wish list:</h2>
+                <table class="user_wish_table"> 
+                    <thead>
+                        <tr>
+                            <td>Item</td>
+                            <td>Date Added</td>
+                            <td>Actions</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {%for single_wish in all_users_wishes%}
+                        
+                        <tr>
+                            <td>{{single_wish.title}}</td>
+                            <td>{{single_wish.created_at}}</td>
+                            <td>
+                                <a href="/remove/{{single_wish.id}}">Remove</a> |
+                                <a href="/wishes/edit/{{single_wish.id}}">Edit</a> |
+                                <a href="/grant/{{single_wish.id}}">Granted</a>
+                            </td>
+                        </tr>
+                        
+                        {%endfor%}
+                    </tbody>
+                </table>
+                
+            </div>
+
+            <div class="bot_container">
+                <h2>Granted Wishes:</h2>
+                <table class="all_wish_table"> 
+                    <thead>
+                        <tr>
+                            <td>Item</td>
+                            <td>Wisher</td>
+                            <td>Date Added</td>
+                            <td>Date Granted</td>
+                            <td>Likes</td>
+                            <td>Actions</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {%for single_wish in all_wishes%}
+                        <tr>
+                            <td>{{single_wish.title}}</td>
+                            <td>{{single_wish.uploaded_by.first_name}}</td>
+                            <td>{{single_wish.created_at}}</td>
+                            <td>{{single_wish.updated_at}}</td>
+                            <td>{{single_wish.users_who_liked.all | length}}</td>
+                            <td>
+                                {%if user_object.id == single_wish.uploaded_by.id%}
+                                
+                                {%else%}
+                                <a href="/like/{{single_wish.id}}">Like</a>
+                                {%endif%}
+                            </td>
+                        </tr>
+                        {%endfor%}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>

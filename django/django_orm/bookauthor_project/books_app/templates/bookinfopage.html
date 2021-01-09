@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    
+    <div class="beegcontainer">
+        <div class="topdata">
+            <h2>{{this_book.title}}</h2>
+            <h4>ID: {{this_book.id}}</h4>
+            <p>Description: "{{this_book.desc}}"</p>
+            <h4 class="movemore">Authors:</h4>
+            <ul>
+                {% for single_author in this_book.authors.all %}
+                <li>{{single_author.first_name}} {{single_author.last_name}}</li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div class="bottomdata">
+            <form action="/link_author/{{ this_book.id }}" method="POST">
+                {% csrf_token %}
+                <select name="author_select">
+                    {% for single_author in all_authors %}
+                    <option value="{{single_author.id}}">{{single_author.first_name}} {{single_author.last_name}}</option>
+                    {% endfor %}
+                </select>
+                
+                <button type="submit">Add Author</button>
+            </form>
+        </div>
+
+    </div>
+
+</body>
+</html>

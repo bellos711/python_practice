@@ -1,0 +1,121 @@
+#Create Books and Authors model
+from django.db import models
+
+
+class Books(models.Model):
+    title = models.CharField(max_length=255)
+    desc = models.TextField(default='default desc')
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+class Authors(models.Model):
+    first_name = models.CharField(max_length=45)
+    last_name = models.CharField(max_length=45)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+
+#create 5 books with these names
+book1 = Books.objects.create(title="C Sharp")
+book2 = Books.objects.create(title="Java")
+book3 = Books.objects.create(title="Python")
+book4 = Books.objects.create(title="PHP")
+book5 = Books.objects.create(title="Ruby")
+
+#create 5 authors with these names
+author1 = Authors.objects.create(first_name="James", last_name="Austen")
+author2 = Authors.objects.create(first_name="Emily", last_name="Dickinson")
+author3 = Authors.objects.create(first_name="Fyodor", last_name="Dostoevsky")
+author4 = Authors.objects.create(first_name="William", last_name="Shakespeare")
+author5 = Authors.objects.create(first_name="Lao", last_name="Tzu")
+
+
+#Add notes to authors class
+notes = models.TextField(default="default notes")
+
+
+#rename C Sharp to C#
+>>> book_to_update = Books.objects.first()
+>>> book_to_update.title
+'C Sharp'
+>>> book_to_update.title="C#"
+>>> book_to_update.save()
+>>> book_to_update.title
+'C#'
+
+#change first name of the 4th author to bill
+>>> author_to_update = Authors.objects.get(id=4) 
+>>> author_to_update.first_name
+'William'
+>>> author_to_update.first_name = 'Bill'
+>>> author_to_update.save()
+>>> author_to_update.first_name
+'Bill'
+>>>
+
+
+#assign the first author to the first 2 books
+book1 = Books.objects.get(id=1)
+book2 = Books.objects.get(id=2)
+author1 = Authors.objects.first()
+
+author1.book.add(book1)
+author1.book.add(book2
+
+>>> author1.book.all()
+<QuerySet [<Books: Books object (1)>, <Books: Books object (2)>]>
+
+
+#Assign the second author to the first 3 books
+author2 = Authors.objects.get(id=2)
+book3 = Books.objects.get(id=3)
+
+author2.book.add(book1)
+author2.book.add(book2)
+author2.book.add(book3)
+
+
+#Assign the third author to the first 4 books
+author3 = Authors.objects.get(id=3)
+book4 = Books.objects.get(id=4)
+
+author3.book.add(book1)
+author3.book.add(book2)	
+author3.book.add(book3)
+author3.book.add(book4)
+
+#assign 4th author to first 5 books
+author4 = Authors.objects.get(id=4)
+book5 = Books.objects.get(id=5)
+
+author4.book.add(book1)
+author4.book.add(book2)
+author4.book.add(book3)
+author4.book.add(book4)
+author4.book.add(book5)
+
+
+#retrieve all authors of 3rd book
+book3.authors.all()
+
+
+
+#remove first author of 3rd book
+>>> book3.authors.remove(author2)    
+>>> book3.authors.all()
+<QuerySet [<Authors: Authors object (3)>, <Authors: Authors object (4)>]>
+>>>
+
+
+#add 5th author as one of authors of 2nd book
+author5 = Authors.objects.last()
+
+book2.authors.add(author5)
+
+
+#find all books that 3rd author is part of
+author3.book.all()
+
+
+#Find all the authors that contributed to the 5th book
+book5.authors.all()

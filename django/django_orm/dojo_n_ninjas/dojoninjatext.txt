@@ -1,0 +1,90 @@
+from django.db import models
+
+# Create your models here.
+class Dojos(models.Model):
+    name = models.CharField(max_length=255)
+    city = models.CharField(max_length=255)
+    state = models.CharField(max_length=2)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+class Ninjas(models.Model):
+    dojo = models.ForeignKey(Dojos, related_name="ninja", on_delete=models.CASCADE)
+    first_name = models.CharField(max_length=255)
+    last_name = models.CharField(max_length=255)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+
+#add 3 dojos
+> dojo1 = Dojos.objects.create(name="Orange Dojo", city="Orange", state="CA")
+> dojo2 = Dojos.objects.create(name="Seattle Dojo", city="Seattle", state="WA")
+> dojo3 = Dojos.objects.create(name="Denver Dojo", city="Denver", state="CO")
+
+#Delete the 3 dojos first created
+> dojo1.delete()
+> dojo2.delete()
+> dojo3.delete()
+
+#craete 3 more dojos
+> dojo4 = Dojos.objects.create(name="Vegas Dojo", city="Las Vegas", state="NV")
+> dojo5 = Dojos.objects.create(name="Portland Dojo", city="Portland", state="OR")
+> dojo6 = Dojos.objects.create(name="New York Dojo", city="New York City", state="NY")
+
+#create 3 ninjas for each dojo
+> ninja1 = Ninjas.objects.create(dojo = dojo4, first_name="Ninja1", last_name="Ninja1Last")
+> ninja2 = Ninjas.objects.create(dojo = dojo4, first_name="Ninja2", last_name="Ninja2Last")
+> ninja3 = Ninjas.objects.create(dojo = dojo4, first_name="Ninja3", last_name="Ninja3Last")
+
+> ninja4 = Ninjas.objects.create(dojo = dojo5, first_name="Ninja4", last_name="Ninja4Last")
+> ninja5 = Ninjas.objects.create(dojo = dojo5, first_name="Ninja5", last_name="Ninja5Last")
+> ninja6 = Ninjas.objects.create(dojo = dojo5, first_name="Ninja6", last_name="Ninja6Last")
+
+> ninja7 = Ninjas.objects.create(dojo = dojo6, first_name="Ninja7", last_name="Ninja7Last")
+> ninja8 = Ninjas.objects.create(dojo = dojo6, first_name="Ninja8", last_name="Ninja8Last")
+> ninja9 = Ninjas.objects.create(dojo = dojo6, first_name="Ninja9", last_name="Ninja9Last")
+
+
+#print all the ninjas in each dojo
+>>> for ninja in dojo4.ninja.all():
+...     print(ninja.first_name) 
+... 
+Ninja1
+Ninja2
+Ninja3
+>>>
+
+>>> for ninja in dojo5.ninja.all():
+...     print(ninja.first_name) 
+... 
+Ninja4
+Ninja5
+Ninja6
+>>>
+
+>>> for ninja in dojo6.ninja.all():
+...     print(ninja.first_name) 
+... 
+Ninja7
+Ninja8
+Ninja9
+>>>
+
+
+#retrieve last ninja's dojo
+>>> Ninjas.objects.last().dojo.name
+'New York Dojo'
+>>>
+
+#add a new desc to dojo class create a default value for desc
+class Dojos(models.Model):
+    name = models.CharField(max_length=255)
+    city = models.CharField(max_length=255)
+    state = models.CharField(max_length=2)
+    desc = models.TextField(default='old dojo')
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+
+
+dojo7 = Dojos.objects.create(name="Salt Lake Dojo", city="Salt Lake City", state="UT")

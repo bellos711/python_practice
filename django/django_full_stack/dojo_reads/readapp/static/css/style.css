@@ -1,0 +1,128 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+body{
+    background-color: #1A1A1A;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: white;
+}
+
+
+.index-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+.registration{
+    width: 40%;
+    margin: auto;
+    padding: 10px;
+    
+    text-align: center;
+}
+
+.button-div{
+    width: 100%;
+    text-align: center;
+}
+
+.login{
+    width: 40%;
+    margin: auto;
+    padding: 10px;
+    
+    text-align: center;
+}
+
+label{
+    width: 110px;
+    display: inline-block;
+}
+
+button{
+    margin-top: 10px;
+    border: 1px solid white ;
+    border-radius: 5px;
+    background-color: #F79E19;
+    padding: 5px;
+    color: black;
+    text-decoration: none;
+    margin-left: 5px;
+}
+
+
+.button-div a{
+    margin-top: 10px;
+    border: 1px solid black;
+    background-color: firebrick;
+    padding: 2px;
+    color: black;
+    text-decoration: none;
+    margin-left: 5px;
+}
+
+.error-spot{
+    width: 100%;
+    text-align: center;
+}
+
+/*Dashboard or books page*/
+.header-container{
+    width: 98%;
+    padding: 15px;
+    /* display: flex;
+    justify-content: space-between;
+    align-items: center; */
+}
+
+.header-container h1{
+    margin-right: auto;
+    width: 85%;
+    display: inline-block;
+}
+
+.header-container a{
+    display: inline-block;
+    margin-left: auto;
+    color: white;
+    text-decoration: none;
+}
+
+.maincontainer{
+    width: 100%;
+    display: flex;
+}
+
+.left_content{
+    width: 50%;
+    background-color: blueviolet;
+    height: 500px;
+    padding: 15px;
+}
+
+.right_content{
+    width: 50%;
+    background-color: cornflowerblue;
+    height: 500px;
+    padding: 15px;
+}
+
+.books_with_reviews{
+    overflow: auto;
+    height: 100%;
+    width: 100%;
+}
+
+/*add book page*/
+.add_book_box{
+    padding: 20px;
+}
+
+.add_book_box div{
+    margin: 5px;
+}

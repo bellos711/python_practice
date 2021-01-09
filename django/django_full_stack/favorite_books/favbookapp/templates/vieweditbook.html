@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {%load static%}
+    <link rel="stylesheet" href="{%static 'css/style.css'%}">
+</head>
+<body>
+    <div class="beegcontainer">
+        <div class="header-container">
+            <h1>Welcome {{this_author.first_name}}</h1>
+            <a href="/logout">Log out</a> 
+        </div>
+        <div class="header-container"><a href="/books">Back</a></div>
+
+        <div class="bottom-container">
+            <div class="left-addbook">
+                {%if this_book.uploaded_by.id == this_author.id%}
+                <h1>{YOU ARE THE CREATOR}</h1>
+                <form action="/editbook/{{this_book.id}}" method="POST">
+                    {%csrf_token%}
+                    <div>
+                        <label for="title">Edit Title: </label><input type="text" name="title" size="28" value="{{this_book.title}}">
+                    </div>
+                    <section class="block">
+                        <h4>Added by {{this_book.uploaded_by.first_name}}</h4>
+                        <p>Added on {{this_book.created_at}}</p>
+                        <p>Updated on {{this_book.updated_at}}</p>
+                    </section>
+                    <div>
+                        <label for="desc">Edit Description: </label><textarea name="desc" id="" cols="30" rows="10" placeholder="{{this_book.desc}}"></textarea>
+                    </div>
+                    
+                    <div class="button-div">
+                        <button type="submit">Update</button>
+                        <a href="/deletebook/{{this_book.id}}">Delete</a>
+                    </div>
+                </form>
+                <div class="error-spot">
+                    {% if messages %}
+                        <ul class="messages">    
+                            {% for message in messages %}    
+                            <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>    
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                </div>
+
+                {%else%}
+                <h1>{NOT CREATOR  {{this_user.id}}}</h1>
+                <section>
+                    <h2>{{this_book.title}}</h2>
+                    <h4>(Added by {{this_book.uploaded_by.first_name}})</h4>
+                    <p class="description">{{this_book.desc}}<p>
+                    
+                </section>
+                <section>
+                    <h4>Added by {{this_book.uploaded_by.first_name}}</h4>
+                    <p>Added on {{this_book.created_at}}</p>
+                    <p>Updated on {{this_book.updated_at}}</p>
+                </section>
+                {%endif%}
+            </div>
+            <!--MAKE A BIG IF ELSE STATEMENT TO CHECK IF YOU ARE THE CREATOR-->
+            <div class="right-allbooks">
+                
+                <div class="inner-right-allbooks">
+
+                    <section class="right-div-sections">
+                        {% if this_author in this_book.users_who_liked.all %}
+                        <p><em>This is one of your favorites.</em></p>
+                        <p><a href="/unfavorite/{{this_book.id}}">Unfavorite?</a></p>
+                        {% else %}
+                        <a href="/addfavorite/{{this_book.id}}">Add to Favorites</a>
+                        {% endif %}
+                    </section>
+                    <div class="book-content">
+                        <h2>{{this_book.title}}</h2>
+                        <h4>(Added by {{this_book.uploaded_by.first_name}})</h4>
+                        <p class="description">{{this_book.desc}}<p>
+                        <h3>{{this_book.users_who_liked.all | length}} User/s who liked the book:</h3>
+                        <ul>
+                        {%for single_user in this_book.users_who_liked.all%}
+                            <li>👍{{single_user.first_name}} {{single_user.last_name}}</li>
+                        {%endfor%}
+                        </ul>
+                        
+                    </div>
+                    
+
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

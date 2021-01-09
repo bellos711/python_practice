@@ -1,0 +1,67 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+body{
+    background-color: #16161E;
+    color: #787C99;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding: 25px;
+}
+
+#gold-val{
+    display:inline;
+}
+
+P{
+    font-size: 1.5rem;
+}
+
+.beegcontainer{
+    background-color: #1A1B26;
+}
+
+.gold_outer_container{
+    display: flex;
+    justify-content: space-between;
+    padding: 30px;
+}
+ 
+.gold_containers{
+    width: 300px;
+    height: 270px;
+    text-align: center;
+    border: 3px solid #787C99;
+    padding: 20px 10px;
+}
+
+.activities_box{
+    margin-top: 30px;
+    
+}
+
+#mytextarea{
+    padding: 7px;
+    background-color: #1E202E;
+    
+    width: 99%;
+    min-height: 150px;
+}
+
+.gold-button{
+    background-color: #1E202E;
+    margin-top: 30px;
+    color: #787C99;
+    padding: 10px;
+    border-radius: 7px;
+    border: 2px solid #787C99;
+}
+
+.correct{
+    color: #9ECE6A;
+}
+
+.incorrect{
+    color: red;
+}

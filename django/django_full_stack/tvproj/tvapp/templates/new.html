@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {%load static%}
+    <link rel="stylesheet" href="{%static 'css/style.css'%}">
+</head>
+<body>
+    <h1>IT WORKED, TVAPPS NEW SHOW!</h1>
+    <div class="beegcontainer">
+        <a href="/shows">Go back</a>
+        <h2>Add a New Show</h2>
+        <div class="form-container">
+            <form action="/shows/add_show" method="post">
+                {%csrf_token%}
+                <label for="name">Title</label>
+                <input type="text" name="title">
+                <br>
+                <label for="network">Network</label>
+                <input type="text" name='network'>
+                <br>
+                <label for="release_date">Release Date</label>
+                <input type="date" name='release_date'>
+                <br>
+                <label for="desc">Description</label>
+                <textarea name="desc" id="" cols="30" rows="10"></textarea>
+                <br>
+                <button type="submit">Create</button>
+            </form>
+            {% if messages %}
+            <ul class="messages">    
+                {% for message in messages %}    
+                <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>    
+                {% endfor %}
+            </ul>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>

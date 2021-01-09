@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <h1>IT WORKED BOOKS!</h1>
+    <a href="/">CLICK HERE TO GO TO BOOKS</a>
+    <div class="beegcontainer">
+        <div class="left-container">
+            <h2>ADD AN AUTHOR</h2>
+            <form action="add_author" method="POST">
+                {% csrf_token %}
+                <label for="first_name">First Name</label><input type="text" name="first_name"> <br>
+                <label for="last_name">Last Name</label><input type="text" name="last_name"> <br>
+                <label for="notes">Notes</label><textarea name="notes" cols="30" rows="10"></textarea>
+                <p><button type="submit">Add</button></p>
+            </form>
+
+        </div>
+        <div class="right-container">
+            <div class="mintable">
+                <table>
+                    <thead>
+                        <tr>
+                            <td>ID</td>
+                            <td>Name</td>
+                            <td>Action</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for  single_author in all_authors %}
+                        <tr>
+                            <td>{{single_author.id}}</td>
+                            <td>{{single_author.first_name}} {{single_author.last_name}}</td>
+                            <td><a href="/see_author/{{ single_author.id }}">View</a></td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

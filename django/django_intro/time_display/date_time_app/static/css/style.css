@@ -1,0 +1,21 @@
+body{
+    background-color: skyblue;
+    color: #F3688B;
+    font-family: 'Open Sans', sans-serif;
+
+}
+
+.time-container{
+    text-align: center;
+    background-color: #F0F195;
+    padding: 30px;
+    width: 40%;
+    margin: auto;
+    margin-top: 15%;
+    border-radius: 10px;
+    box-shadow: 5px 4px #2760D9;
+}
+
+p{
+    font-size: 1.3rem;
+}

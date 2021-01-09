@@ -1,0 +1,12 @@
+body{
+    background-color: aqua;
+    font-family: "Comic Sans MS", cursive, sans-serif;
+}
+
+.container{
+    background-color: cornflowerblue;
+    color:white;
+    text-align: center;
+    margin: auto;
+    padding: 20px;
+}
