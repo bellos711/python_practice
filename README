@@ -20,4 +20,4 @@ toml              0.10.1
 wrapt             1.12.1
 
 
-Also the SECRET_KEY/SALT in all settings.py file can stay since these are for practice runs.
+Also the SECRET_KEY/SALT in all settings.py files can stay since these are for practice runs.
